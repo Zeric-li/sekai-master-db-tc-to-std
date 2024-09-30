@@ -10,7 +10,7 @@ Build for Project Sekai (Traditional Chinese) Master DB **version 3.4.0**.
 
 1. Clone this repository
 ```bash
-git clone 
+git clone https://github.com/Zeric-li/sekai-master-db-tc-to-std.git
 ```
 2. Navigate to the cloned repository
 ```bash

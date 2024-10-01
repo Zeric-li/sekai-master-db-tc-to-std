@@ -8,7 +8,7 @@ Build for Project Sekai (Traditional Chinese) Master DB **version 3.4.0**.
 
 ## Notice
 
-**The newly updated tc db version 3.4.0.4 has significant changes. A lot of files was rollback to the older data structure which is not need to be aligned. This project will be paused until the new db structure is stable.**
+**The newly updated tc db version 3.4.0.4 has significant changes. Many files were rolled back to the older data structure which does not need to be aligned. This project will be paused until the new db structure is stable.**
 
 ## Usage
 

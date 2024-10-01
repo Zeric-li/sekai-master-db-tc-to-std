@@ -39,6 +39,6 @@ python start.py
 - [x] bondsHonors.json
 - [x] cardCostume3ds.json
 - [x] cards.json
-- [x] characterLiveHighScoreRewards.json
-- [x] characterLiveStages.json
+- [x] challengeLiveHighScoreRewards.json
+- [x] challengeLiveStages.json
 - [ ] Other files (about 25 more files needs to be aligned)

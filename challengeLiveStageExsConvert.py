@@ -2,21 +2,10 @@ import os
 import json
 from collections import OrderedDict
 
-# Helper function to generate rank name in correct format
-def rank_to_name(rank):
-    if rank % 10 == 1 and rank != 11:
-        return f"{rank}st"
-    elif rank % 10 == 2 and rank != 12:
-        return f"{rank}nd"
-    elif rank % 10 == 3 and rank != 13:
-        return f"{rank}rd"
-    else:
-        return f"{rank}th"
-
-def convert_challenge_live_stages(input_dir, output_dir):
+def convert_challenge_live_stage_exs(input_dir, output_dir):
     # 构建输入文件和输出文件的完整路径
-    input_file = os.path.join(input_dir, 'challengeLiveStages.json')
-    output_file = os.path.join(output_dir, 'challengeLiveStages.json')
+    input_file = os.path.join(input_dir, 'challengeLiveStageExs.json')
+    output_file = os.path.join(output_dir, 'challengeLiveStageExs.json')
 
     # 打开并读取输入文件
     with open(input_file, 'r', encoding='utf-8') as f:
@@ -26,11 +15,12 @@ def convert_challenge_live_stages(input_dir, output_dir):
     fields = [
         (0, "id"),  # 动态生成
         (1, "characterId"),  # 来自原数据
-        (2, "rank"),  # 来自原数据
-        (3, "name"),  # 动态生成
-        (4, "nextStageChallengePoint"),  # 来自原数据
-        (5, "completeStageResourceBoxId"),  # 固定为1
-        (6, "completeStageCharacterExp"),  # 固定为1
+        (2, "fromRank"),  # 来自原数据
+        (3, "toRank"),  # 来自原数据
+        (4, "name"),  # 固定为“EX”
+        (5, "nextStageChallengePoint"),  # 来自原数据
+        (6, "completeStageResourceBoxId"),  # 固定为2
+        (7, "completeStageCharacterExp"),  # 固定为0
     ]
 
     # 转换后的结果列表
@@ -44,13 +34,16 @@ def convert_challenge_live_stages(input_dir, output_dir):
         # 动态生成的字段
         generated_data = {
             "id": idx + 1,  # 序号从1开始生成
-            "name": rank_to_name(item[1]),  # 生成rank的字符串表达
-            "completeStageResourceBoxId": 1,  # 固定为1
-            "completeStageCharacterExp": 1  # 固定为1
+            "name": "EX",  # 固定为“EX”
+            "completeStageResourceBoxId": 2,  # 固定为2
+            "completeStageCharacterExp": 0  # 固定为0
         }
 
         # 从输入数据中提取的字段
-        character_id, rank, next_stage_challenge_point = item[0], item[1], item[2]
+        character_id = item.get("characterId")
+        from_rank = item.get("fromRank")
+        to_rank = item.get("toRank")
+        next_stage_challenge_point = item.get("nextStageChallengePoint")
 
         # 遍历字段映射并填充数据
         for index, field_name in fields:
@@ -61,8 +54,10 @@ def convert_challenge_live_stages(input_dir, output_dir):
                 # 根据映射的字段名称填充相应的数据
                 if field_name == "characterId":
                     converted_item[field_name] = character_id
-                elif field_name == "rank":
-                    converted_item[field_name] = rank
+                elif field_name == "fromRank":
+                    converted_item[field_name] = from_rank
+                elif field_name == "toRank":
+                    converted_item[field_name] = to_rank
                 elif field_name == "nextStageChallengePoint":
                     converted_item[field_name] = next_stage_challenge_point
 
@@ -80,4 +75,4 @@ def convert_challenge_live_stages(input_dir, output_dir):
 if __name__ == "__main__":
     input_directory = './sekai-master-db-tc-diff'
     output_directory = './sekai-master-db-tc-std-diff'
-    convert_challenge_live_stages(input_directory, output_directory)
+    convert_challenge_live_stage_exs(input_directory, output_directory)

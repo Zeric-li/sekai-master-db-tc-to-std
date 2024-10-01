@@ -6,6 +6,7 @@ import bondsHonorsConvert
 import cardCostume3dsConvert
 import cardsConvert
 import challengeLiveHighScoreRewardsConvert
+import challengeLiveStageExsConvert
 import challengeLiveStagesConvert
 
 if __name__ == "__main__":
@@ -32,5 +33,7 @@ if __name__ == "__main__":
         print(f"Conversion complete. Output saved to {output_folder}/cards.json")
         challengeLiveHighScoreRewardsConvert.convert_challenge_live_high_score_rewards(input_folder, output_folder)
         print(f"Conversion complete. Output saved to {output_folder}/challengeLiveHighScoreRewards.json")
+        challengeLiveStageExsConvert.convert_challenge_live_stage_exs(input_folder, output_folder)
+        print(f"Conversion complete. Output saved to {output_folder}/challengeLiveStageExs.json")
         challengeLiveStagesConvert.convert_challenge_live_stages(input_folder, output_folder)
         print(f"Conversion complete. Output saved to {output_folder}/challengeLiveStages.json")

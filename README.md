@@ -40,5 +40,6 @@ python start.py
 - [x] cardCostume3ds.json
 - [x] cards.json
 - [x] challengeLiveHighScoreRewards.json
+- [x] challengeLiveStageExs.json
 - [x] challengeLiveStages.json
 - [ ] Other files (about 25 more files needs to be aligned)
